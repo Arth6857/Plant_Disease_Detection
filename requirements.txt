@@ -10,3 +10,4 @@ matplotlib==3.9.2
 seaborn==0.13.2
 h5py==3.11.0
 opencv-python-headless==4.10.0.84
+streamlit==1.35.0
