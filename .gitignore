@@ -1,0 +1,12 @@
+plantvillage dataset/
+data/
+*.zip
+*.h5
+.venv/
+__pycache__/
+.DS_Store
+
+model/
+train_data/
+val_data/
+training.log

@@ -1,0 +1,5 @@
+streamlit
+pillow
+numpy
+tensorflow==2.15.0
+h5py
