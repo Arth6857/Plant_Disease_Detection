@@ -5,11 +5,16 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 
+st.set_page_config(
+    page_title="Plant Disease Detector",
+    page_icon="🌿",
+    layout="centered"
+)
+
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
 @st.cache_resource
 def load_model():
-    # Load the fully trained model
     return tf.keras.models.load_model(
         f"{working_dir}/model/plant_disease_model.keras"
     )
@@ -20,12 +25,6 @@ def load_classes():
         return {int(k): v for k, v in json.load(f).items()}
 
 class_indices = load_classes()
-
-st.set_page_config(
-    page_title="Plant Disease Detector",
-    page_icon="🌿",
-    layout="centered"
-)
 
 st.title("🌿 Plant Disease Detector")
 st.markdown("Upload a leaf image to detect plant disease instantly")
@@ -62,14 +61,17 @@ if uploaded_file is not None:
                 condition = "Unknown"
 
             st.divider()
+
             if "healthy" in predicted_class.lower():
                 st.success("✅ Plant is Healthy!")
             else:
                 st.error("⚠️ Disease Detected!")
 
             col1, col2 = st.columns(2)
+
             with col1:
                 st.metric("🌱 Plant", plant.replace("_", " "))
+
             with col2:
                 st.metric("🔬 Condition", condition.replace("_", " "))
 
